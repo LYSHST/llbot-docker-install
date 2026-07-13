@@ -1,8 +1,9 @@
 # LLBot Docker 安装脚本
-## 优化
+## 修改内容
 1. 优化安装流程
-2. 修复镜像站无法使用
-3. 修复镜像拉取失败
+2. 使用1ms镜像站安装
+3. 修复镜像站无法使用
+4. 修复镜像拉取失败
 ## Docker Compose 版本
 使用 Docker Compose 一键部署，支持 Linux 和 macOS
 ### 特性
