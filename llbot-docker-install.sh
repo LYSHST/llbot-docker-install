@@ -52,7 +52,7 @@ if [ ${#SERVICE_PORTS[@]} -gt 0 ]; then
     PORTS_CONFIG="    ports:"
     for port in "${!SERVICE_PORTS[@]}"; do
         PORTS_CONFIG="${PORTS_CONFIG}
-      - \"${port}:${port}\""
+      - \"[::]:${port}:${port}\""
     done
 fi
 
@@ -116,6 +116,25 @@ printLogin(){
     echo ""
     echo "=========================================="
     echo "配置完成！"
+    echo "=========================================="
+    echo ""
+    echo "生成的文件："
+    echo "  - llbot_config/webui_token.txt"
+    echo "  - llbot_config/auth_token.txt"
+    echo "  - docker-compose.yml"
+    echo ""
+    echo "WebUI 访问地址: http://localhost:${WEBUI_PORT}"
+    echo "WebUI 密码: ${WEBUI_TOKEN}"
+    echo ""
+    echo "登录方式: 启动后打开 WebUI 扫码登录，"
+    echo "          或运行 sudo docker compose logs -f 在日志中查看二维码"
+    echo ""
+    echo "提示: 您选择了稍后配置模式"
+    echo "请在 WebUI 中完成 AuthToken、协议、登录设备等所有设置"
+    echo "Auth Token 获取地址: https://auth.luckylillia.com"
+    echo ""
+    echo "启动命令: sudo docker compose up -d"
+    echo "查看日志: sudo docker compose logs -f"
     echo "=========================================="
 }
 
