@@ -40,7 +40,6 @@ chmod -R 777 llbot_config
 echo ""
 read -p "是否使用 Docker 镜像源 (y/n): " use_docker_mirror
 docker_mirror=""
-# llbot固定7.12.14，pmhq保持latest
 LLBOT_TAG="7.12.14"
 PMHQ_TAG="latest"
 
@@ -48,12 +47,21 @@ if [[ "$use_docker_mirror" =~ ^[yY]$ ]]; then
     docker_mirror="docker.1ms.run/"
 fi
 
+# 新增IPv6选择
+echo ""
+read -p "是否需要监听 IPv6 (y/n): " enable_ipv6
+
 PORTS_CONFIG=""
 if [ ${#SERVICE_PORTS[@]} -gt 0 ]; then
     PORTS_CONFIG="    ports:"
     for port in "${!SERVICE_PORTS[@]}"; do
-        PORTS_CONFIG="${PORTS_CONFIG}
+        if [[ "$enable_ipv6" =~ ^[yY]$ ]]; then
+            PORTS_CONFIG="${PORTS_CONFIG}
       - \"[::]:${port}:${port}\""
+        else
+            PORTS_CONFIG="${PORTS_CONFIG}
+      - \"${port}:${port}\""
+        fi
     done
 fi
 
