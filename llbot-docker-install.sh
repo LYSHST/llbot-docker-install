@@ -40,9 +40,9 @@ chmod -R 777 llbot_config
 echo ""
 read -p "是否使用 Docker 镜像源 (y/n): " use_docker_mirror
 docker_mirror=""
-# 固定指定版本 7.12.14
+# llbot固定7.12.14，pmhq保持latest
 LLBOT_TAG="7.12.14"
-PMHQ_TAG="7.12.14"
+PMHQ_TAG="latest"
 
 if [[ "$use_docker_mirror" =~ ^[yY]$ ]]; then
     docker_mirror="docker.1ms.run/"
@@ -61,7 +61,7 @@ cat << EOF > docker-compose.yml
 version: "3.8"
 services:
   pmhq:
-    image: ${docker_mirror}linyuchen/pmhq:${PMHQ_TAG}
+    image: ${docker_mirror}linyuchen/pmhq:latest
     privileged: true
     environment:
       - ENABLE_HEADLESS=false
@@ -79,7 +79,7 @@ services:
       start_period: 40s
 
   llbot:
-    image: ${docker_mirror}linyuchen/llbot:${LLBOT_TAG}
+    image: ${docker_mirror}linyuchen/llbot:7.12.14
 ${PORTS_CONFIG}
     extra_hosts:
       - "host.docker.internal:host-gateway"
