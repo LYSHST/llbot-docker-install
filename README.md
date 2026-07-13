@@ -4,6 +4,7 @@
 2. 使用1ms镜像站安装
 3. 修复镜像站无法使用
 4. 修复镜像拉取失败
+5. 去掉了Auth Token
 ## Docker Compose 版本
 使用 Docker Compose 一键部署，支持 Linux 和 macOS
 ### 特性
