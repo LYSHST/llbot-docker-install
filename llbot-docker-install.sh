@@ -87,7 +87,7 @@ services:
       start_period: 40s
 
   llbot:
-    image: ${docker_mirror}linyuchen/llbot:8.0.8
+    image: ${docker_mirror}linyuchen/llbot:7.12.15
 ${PORTS_CONFIG}
     extra_hosts:
       - "host.docker.internal:host-gateway"
